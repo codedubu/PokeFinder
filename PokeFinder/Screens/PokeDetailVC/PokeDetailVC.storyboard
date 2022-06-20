@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Poke DetailVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="PokeDetailVC" id="Y6W-OH-hqX" customClass="PokeDetailVC" customModule="PokeFinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pokemonName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOn-b3-i45">
+                                <rect key="frame" x="55" y="128" width="304" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iab-gg-51s">
+                                <rect key="frame" x="28" y="206.5" width="358" height="350.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pokemonType" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJG-6u-lSH">
+                                <rect key="frame" x="112" y="597" width="190" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I46-uP-G1B">
+                                <rect key="frame" x="28" y="207" width="358" height="350"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="pokeSpriteTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="efx-Oi-lbK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjB-RT-g4Z">
+                                <rect key="frame" x="329" y="44" width="65" height="43"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="heavy"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="pokeAddButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZoY-Tk-go4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JJG-6u-lSH" firstAttribute="top" secondItem="iab-gg-51s" secondAttribute="bottom" constant="40" id="A0d-gb-6yR"/>
+                            <constraint firstItem="sjB-RT-g4Z" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Des-9X-i43"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="sjB-RT-g4Z" secondAttribute="trailing" constant="20" id="Dzj-lc-zIW"/>
+                            <constraint firstItem="bOn-b3-i45" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="55" id="EfA-fd-IyV"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JJG-6u-lSH" secondAttribute="trailing" constant="112" id="F8I-lr-TSH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="JJG-6u-lSH" secondAttribute="bottom" constant="184" id="GbH-TL-a1k"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="sjB-RT-g4Z" secondAttribute="trailing" constant="20" id="KPu-rr-QUI"/>
+                            <constraint firstItem="bOn-b3-i45" firstAttribute="top" secondItem="sjB-RT-g4Z" secondAttribute="bottom" constant="41" id="MEp-Po-EZ1"/>
+                            <constraint firstItem="bOn-b3-i45" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="84" id="NJG-7d-Dzo"/>
+                            <constraint firstItem="iab-gg-51s" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="28" id="Yaw-A1-gZa"/>
+                            <constraint firstItem="bOn-b3-i45" firstAttribute="top" secondItem="sjB-RT-g4Z" secondAttribute="bottom" constant="41" id="bAF-Qh-MvP"/>
+                            <constraint firstItem="sjB-RT-g4Z" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="329" id="fMW-lS-Lfc"/>
+                            <constraint firstItem="sjB-RT-g4Z" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="329" id="l0v-Dt-BoK"/>
+                            <constraint firstItem="sjB-RT-g4Z" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="lOJ-5s-myg"/>
+                            <constraint firstItem="iab-gg-51s" firstAttribute="top" secondItem="bOn-b3-i45" secondAttribute="bottom" constant="40" id="ruc-yG-4wx"/>
+                            <constraint firstItem="JJG-6u-lSH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="112" id="uIE-31-mou"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="iab-gg-51s" secondAttribute="trailing" constant="28" id="yuz-gC-K1b"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bOn-b3-i45" secondAttribute="trailing" constant="55" id="zI6-E7-VJn"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="pokemonNameLabel" destination="bOn-b3-i45" id="fab-G5-7sG"/>
+                        <outlet property="pokemonShinyButton" destination="I46-uP-G1B" id="aeh-fJ-brV"/>
+                        <outlet property="pokemonSpriteImageView" destination="iab-gg-51s" id="ucI-Kn-YHR"/>
+                        <outlet property="pokemonTypeLabel" destination="JJG-6u-lSH" id="gZb-aX-JeH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="112.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
