@@ -12,7 +12,7 @@ class PokemonCell: UICollectionViewCell {
     static let reuseID      = "PokemonCell"
     let pokemonImageView    = PFPokemonImageView(frame: .zero)
     let pokemonNameLabel    = PFTitleLabel(textAlignment: .center, fontSize: 16)
-    
+        
     
     override init(frame: CGRect) {
         super.init(frame: frame)

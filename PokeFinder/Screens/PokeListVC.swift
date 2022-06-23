@@ -12,7 +12,6 @@ class PokeListVC: UIViewController {
     enum Section { case main }
         
     var pokemon: [Pokemon]      = []
-    var page                    = 1
     var hasMorePokemon          = true
     var isLoadingMorePokemon    = false
     
@@ -23,22 +22,30 @@ class PokeListVC: UIViewController {
         super.viewDidLoad()
         configureVC()
         configureCollectionView()
-        getPokemon(page: page)
+        getPokemon()
         configureDatSource()
+
     }
     
     
-    func getPokemon(page: Int) {
+    func getPokemon() {
+        if isLoadingMorePokemon {
+            print("OOPS YOU TRIED TO LOAD TOO SOON")
+            return
+        }
+        isLoadingMorePokemon = true
         
         Task {
             do {
-                let pokemon = try await NetworkManager.shared.getAllPokemon(page: page)
+                let pokemon = try await NetworkManager.shared.getAllPokemon()
                 updateUI(with: pokemon)
+                isLoadingMorePokemon = false
                 
             } catch {
                 if let pokeError = error as? PokeError {
                     print(pokeError.localizedDescription)
                 }
+                isLoadingMorePokemon = false
             }
         }
     }
@@ -49,7 +56,7 @@ class PokeListVC: UIViewController {
         
         self.pokemon.append(contentsOf: pokemon)
         
-        self.updateData(on: pokemon)
+        self.updateData(on: self.pokemon)
     }
     
     
@@ -104,21 +111,24 @@ extension PokeListVC: UICollectionViewDelegate {
             
             guard hasMorePokemon, !isLoadingMorePokemon else { return }
             
-            page += 8
-            getPokemon(page: page)
+            getPokemon()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let selectedPokemon     = pokemon[indexPath.item]
+//        let selectedPokemon     = pokemon[indexPath.item]
+        guard let snapshotPokemon = dataSource.itemIdentifier(for: indexPath) else { return }
+//        let pokemonCell = collectionView.cellForItem(at: indexPath) as! PokemonCell
+//        let selecetedPokemon = pokemonCell.pokemon
+        
         
         let pokeStoryboard  = UIStoryboard(name: "PokeDetailVC", bundle: nil)
         let pokeDetailVC    = pokeStoryboard.instantiateViewController(withIdentifier: "PokeDetailVC") as? PokeDetailVC
         
         guard let pokeDetailVC = pokeDetailVC, let navController = self.navigationController else { return }
         
-        pokeDetailVC.pokemon   = selectedPokemon
+        pokeDetailVC.pokemon   = snapshotPokemon
         
         navController.pushViewController(pokeDetailVC, animated: true)
     }

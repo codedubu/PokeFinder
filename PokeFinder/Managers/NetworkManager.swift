@@ -13,6 +13,7 @@ class NetworkManager {
     static let shared           = NetworkManager()
     private let baseURL         = "https://pokeapi.co/api/v2"
     static let pokemonPerPage   = 50
+    var page                    = 0
     let decoder                 = JSONDecoder()
     let cache                   = NSCache<NSString, UIImage>()
     
@@ -49,8 +50,8 @@ class NetworkManager {
 //    }
 //
         // taskGroup Version
-        func getAllPokemon(page: Int) async throws -> [Pokemon] {
-            let endpoint = baseURL + "/pokemon?limit=\(NetworkManager.pokemonPerPage)&offset=\(page)"
+        func getAllPokemon() async throws -> [Pokemon] {
+            let endpoint = baseURL + "/pokemon?limit=\(NetworkManager.pokemonPerPage)&offset=\(page * NetworkManager.pokemonPerPage)"
     
             guard let finalURL = URL(string: endpoint) else {
     
@@ -72,6 +73,7 @@ class NetworkManager {
     
             try await withThrowingTaskGroup(of: Pokemon.self, body: { group in
     
+                print("HEY LOOK OVER HERE!!!", page)
                 for result in paginationResult.results {
     
                     group.addTask { [self] in
@@ -87,6 +89,8 @@ class NetworkManager {
             })
             
             let sortedArray = pokemonArray.sorted(by: { $0.id < $1.id })
+            
+            page += 1
     
             return sortedArray
         }
